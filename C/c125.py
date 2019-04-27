@@ -11,20 +11,8 @@ def make_divisors(n):
                 divisors.append(n//i)
     return divisors
 
-# 最大公約数
-def gcd(n, m):
-    # 最大公約数
-    a = max(n,m)
-    b = min(n,m)
-    while b:
-        a, b = b, a % b
-    return a
-
-As = sorted(As)[::-1]
-devs = make_divisors(gcd(As[0],As[1]))
-if N > 2:
-    devs.extend(make_divisors(gcd(As[1],As[2])))
-    devs.extend(make_divisors(gcd(As[2],As[0])))
+devs = make_divisors(As[0])
+devs.extend(make_divisors(As[1]))
 devs = list(set(devs))
 cnt = 1
 for dev in sorted(devs)[::-1]:
