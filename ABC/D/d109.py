@@ -3,10 +3,38 @@
 解法
 奇数のペアを見つけ出し、ペアが重なるようにルートを敷いてやると良い？
 """
+
+### 予め一筆書きルートを作る
+H, W = map(int,input().split())
+As = []
+for i in range(H):
+    As.append(list(map(int,input().split())))
+routes = []
+for i in range(H):
+    for j in range(W):
+        if i%2 == 0:
+            routes.append((i+1,j+1))
+        else:
+            routes.append((i+1,W-j))
+n = len(routes)
+mvs = []
+cnt = 0
+for i in range(n-1):
+    hi,wi = routes[i]
+    hi2,wi2 = routes[i+1]
+    if As[hi-1][wi-1] % 2 == 1:
+        As[hi2-1][wi2-1] += 1
+        mvs.append([hi,wi,hi2,wi2])
+        cnt += 1
+
+print(cnt)
+for h1,w1,h2,w2 in mvs:
+    print(h1,w1,h2,w2)
+
+
 """
 失敗解法(移動回数が多すぎる)
 H, W = map(int,input().split())
-As = []
 odds = []
 for i in range(H):
     # As.append(list(map(int,input().split())))
@@ -14,7 +42,7 @@ for i in range(H):
     for j,l in enumerate(ls):
         if l%2 == 1:
             odds.append([i,j])
-            
+
 def make_route(odd1,odd2):
     h1,w1 = odd1
     h2,w2 = odd2
@@ -55,5 +83,3 @@ for h1,w1,h2,w2 in mvs:
 
 """
 
-
-### 一筆書きルートを作る
