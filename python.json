@@ -1,0 +1,126 @@
+{
+	// Place your snippets for python here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+
+	// AtCoder用のスニペットづくり
+	"mapint": {
+		"prefix": "mapint",
+		"body": [
+			"$1 = map(int, input().split())",
+			"$2"
+		],
+		"description": "for Input"
+	},
+	"maplist": {
+		"prefix": "maplist",
+		"body": [
+			"$1 = list(map(int, input().split()))",
+			"$2"
+		],
+		"description": "for Input"
+	},
+	"s_maplist":{
+		"prefix": "s_maplist",
+		"body":[
+			"$1 = list(map(int, input().split()),sorted=$2)",
+			"$3"
+		],
+		"description": "sort"
+	}
+	"deque": {
+		"prefix": "dqinit",
+		"body": [
+			"from collections import deque",
+			"q = deque([])",
+			"$1"
+		],
+		"description": "for deque"
+	},
+	"heapq":{
+		"prefix": "heapq",
+		"body":[
+			"from collections import heapq",
+			"q = []",
+			"heapq.heapify(q)",
+			"heapq.heappush(q,($1))",
+			"$2 = heapq.heappop(q)",
+			"$3"
+		],
+		"description": "priority queue"
+	},
+	"divisors":{
+		"prefix": "divisors",
+		"body":[
+			"# 約数",
+			"def make_divisors(n):",
+			"	divisors = []",
+			"	for i in range(1, int(n**0.5)+1):",
+			"		if n % i == 0:",
+			"			divisors.append(i)",
+			"			if i != n // i:",
+			"				divisors.append(n//i)",
+			"	return divisors"
+		],
+		"description": "list divisors"
+	},
+	"gcd":{
+		"prefix": "gcd",
+		"body":[
+			"def gcd(n, m):",
+			"	# 最大公約数",
+			"	a = max(n,m)",
+			"	b = min(n,m)",
+			"	while b:",
+			"		a, b = b, a % b",
+			"	return a"
+		],
+		"description": "euclid"
+	},
+	"unionfind":{
+		"prefix": "unionfind",
+		"body":[
+			"$1"
+		],
+		"description": "UnionFind Tree"
+	},
+	"treebfs":{
+		"prefix": "treebfs",
+		"body":[
+			"from collections import deque",
+			"# 木構造を作る",
+			"N = int(input())",
+			"G = [[] for i in range(N)]",
+			"for i in range(N-1):",
+			"	# グラフに頂点を追加(距離があるときは,u,vの後に入れる)",
+			"	u,v = map(int,input().split())",
+			"	G[u-1].append((v-1))",
+			"	G[v-1].append((u-1))",
+			"",
+			"# 木をBFSをする",
+			"used = [False] * N",
+			"used[$1] = True # 始めどこから行くか",
+			"q = deque([K-1])",
+			"while len(q) > 0:",
+			"	a = q.popleft()",
+			"	Vs = G[a]",
+			"	for u in Vs: # 頂点以外の要素がグラフにあるときはここ",
+			"		if not used[u]:",
+			"			q.append(u)",
+			"			# なにか処理を書きたいときはここに書く",
+			"			used[u] = True"
+
+		]
+	}
+
+}
