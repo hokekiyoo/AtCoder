@@ -1,3 +1,4 @@
+"""
 import numpy as np
 
 N, A, B, C = map(int,input().split())
@@ -43,3 +44,45 @@ for N in range(4**8):
     except:
         pass
 print(score_min)
+"""
+
+"""
+20190704とき直し
+l1,l2,...,lN
+N は max8本
+A,B,Cの3本の竹にしたい
+
+延長 : 1MP  +1
+短縮 : 1MP  -1
+合成 : 10MP li + lj
+A, B, Cを達成するための最小MP
+"""
+
+
+N,A,B,C = map(int, input().split())
+ls = [int(input()) for i in range(N)]
+
+import sys
+sys.setrecursionlimit(100000)
+"""
+Gを作りながら探索するパターン
+"""
+
+minMP = 10**9 + 7
+def dfs(i,MP,a,b,c):
+    global minMP
+    # 探索打ち切り条件->計算してしまう
+    if i+1  >= N:
+        if a>0 and b>0 and c>0:
+            cnt = MP + abs(A-a)+abs(B-b)+abs(C-c) - 30 
+            minMP = min(cnt,minMP)
+        return 0
+    l = ls[i+1]
+    # 再帰的に探索
+    dfs(i+1,MP,a,b,c)   # なんもしない
+    dfs(i+1,MP+10,a+l,b,c) # aに
+    dfs(i+1,MP+10,a,b+l,c) # bに
+    dfs(i+1,MP+10,a,b,c+l) # cに
+
+dfs(-1,0,0,0,0)
+print(minMP)
