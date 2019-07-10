@@ -27,6 +27,7 @@ def dfs(G, v,pre_v):
         else:
             dfs(G, next_v,v)
 
+# 実行
 cnt = 0
 for i in range(N):
     if not used[i]:
