@@ -1,17 +1,21 @@
 """
-combination
-右が固定 : 左は大きければ大きいほうが良い
-左が固定 : 右は1/2に近ければ近いほうが良い
-これを左から順に探していくので良い
+https://atcoder.jp/contests/abc094/tasks/arc095_b
+comb(n,r)
+a1, a2, ..., an から2つの数をcomb(ai,aj)が最大になるように選ぶ
+
+
+2 4 6 9 11
 """
 
-N = int(input())
-As = list(map(int,input().split()))
-As = sorted(As, reverse=True)
-l = As[0]
-r = As[1]
+n = int(input())
+As  = list(map(int, input().split()))
+A_sort = sorted(As)
+A_max = max(As)
 
-for a in As[2:]:
-    if abs(l/2-a) < abs(l/2-r):
-        r = a
-print(l,r)
+ans = 100000000000
+for a in A_sort[:-1]:
+    d1 = abs(A_max / 2 - ans)
+    d2 = abs(A_max / 2 - a)
+    if d1 >= d2:
+        ans = a
+print(A_max,ans)
