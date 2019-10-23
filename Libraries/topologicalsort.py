@@ -22,7 +22,9 @@ def topological_sort(G):
         v = q.popleft()
         res.append(v)
         for next_v in G[v]:
+            # 入次数を下げていく
             cnt_in[next_v] -= 1
+            # 入次数が0に残ったところを次に追加
             if cnt_in[next_v] == 0:
                 q.append(next_v)
 
